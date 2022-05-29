@@ -1,8 +1,10 @@
 package com.todoserver.todo;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Todo {
+
+public class Todo implements Serializable{
   private String title;
   private String body;
   private LocalDate timeStamp;

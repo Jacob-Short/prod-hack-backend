@@ -1,8 +1,9 @@
 package com.todoserver.member;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Member {
+public class Member implements Serializable{
   private Long id;
   private String username;
   private String password;
@@ -13,6 +14,11 @@ public class Member {
     this.username = "jacob";
     this.password = "jacob123";
     this.bio = "I like coding!";
+  }
+
+  public Member(String username, String password) {
+    this.username = username;
+    this.password = password;
   }
 
   public Member(String username, String password, String bio) {
