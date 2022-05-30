@@ -5,38 +5,42 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// RestController marks the class as a controler where every method returns
+// RestController marks the class as a controller where every method returns
 // a domain object instead of a view. Combining @Controller & @ResponseBody
 @RestController
-@RequestMapping(path = "api/member")
+@RequestMapping(
+    path = "/api/members",
+    method = {RequestMethod.GET, RequestMethod.POST})
 public class MemberController {
 
-  private final MemberService memberService;
+  // private final MemberService memberService;
 
   // dependency injection
-  @Autowired
-  public MemberController(MemberService memberService) {
-    this.memberService = memberService;
-  }
+  //  @Autowired
+  //  public MemberController(MemberService memberService) {
+  //    this.memberService = memberService;
+  //  }
+  @Autowired private MemberRepository memberRepository;
 
-  @GetMapping
+  // routes
+  @GetMapping(path = "/", produces = "application/json")
   public List<Member> getMembers() {
-    return memberService.getMembers();
+    return memberRepository.findAll();
   }
 
-  @GetMapping(value = "/{id}")
-  public Member getPersonById(@PathVariable("id") Long id) {
-    return new Member();
+  @PostMapping(path = "/new-member", consumes = "application/json", produces = "application/json")
+  public Member addMember(@RequestBody Member member) {
+    return memberRepository.save(member);
   }
+
+  //  @GetMapping(value = "/{id}")
+  //  public Member getMemberById(@PathVariable("id") Long id) {
+  //    return new Member();
+  //  }
 
   @PutMapping
-  public void updatePerson(@RequestBody Member member) {}
-
-  @PostMapping
-  public Member addPerson(@RequestBody Member member) {
-    return new Member();
-  }
+  public void updateMember(@RequestBody Member member) {}
 
   @DeleteMapping(value = "/{id}")
-  public void deletePerson(@PathVariable("id") Long id) {}
+  public void deleteMember(@PathVariable("id") Long id) {}
 }

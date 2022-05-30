@@ -1,10 +1,15 @@
 package com.todoserver.todo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.io.Serializable;
 
-
+@Entity
 public class Todo implements Serializable{
+
+  @Id
+  private Long id;
   private String title;
   private String body;
   private LocalDate timeStamp;
@@ -18,6 +23,7 @@ public class Todo implements Serializable{
   public Todo(String title, String body) {
     this.title = title;
     this.body = body;
+    this.timeStamp = LocalDate.now();
   }
 
   public String getTitle() {

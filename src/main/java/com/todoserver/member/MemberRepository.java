@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // Automatically get access to: Creating new Members, Updating Existing ones,
 // Deleting Members, and Finding Members
 
-public interface MemberRepository extends JpaRepository<Member, Long>{
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
 }
