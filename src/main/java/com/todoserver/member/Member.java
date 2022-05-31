@@ -1,6 +1,7 @@
 package com.todoserver.member;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.io.Serializable;
@@ -31,6 +32,8 @@ public class Member implements Serializable{
     this.bio = bio;
   }
 
+  @Id
+  @GeneratedValue
   public Long getId() {
     return this.id;
   }

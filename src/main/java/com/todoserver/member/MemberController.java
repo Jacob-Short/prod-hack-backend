@@ -2,15 +2,13 @@ package com.todoserver.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 // RestController marks the class as a controller where every method returns
 // a domain object instead of a view. Combining @Controller & @ResponseBody
 @RestController
 @RequestMapping(
-    path = "/api/members",
-    method = {RequestMethod.GET, RequestMethod.POST})
+    value = "/members")
 public class MemberController {
 
   // private final MemberService memberService;
@@ -23,12 +21,12 @@ public class MemberController {
   @Autowired private MemberRepository memberRepository;
 
   // routes
-  @GetMapping(path = "/", produces = "application/json")
+  @GetMapping
   public List<Member> getMembers() {
     return memberRepository.findAll();
   }
 
-  @PostMapping(path = "/new-member", consumes = "application/json", produces = "application/json")
+  @PostMapping
   public Member addMember(@RequestBody Member member) {
     return memberRepository.save(member);
   }
@@ -38,9 +36,11 @@ public class MemberController {
   //    return new Member();
   //  }
 
-  @PutMapping
-  public void updateMember(@RequestBody Member member) {}
+  //  @PutMapping
+  //  public void updateMember(@RequestBody Member member) {
+  //    memberRepository.save(member);
+  //  }
 
-  @DeleteMapping(value = "/{id}")
-  public void deleteMember(@PathVariable("id") Long id) {}
+  //  @DeleteMapping(value = "/{id}")
+  //  public void deleteMember(@PathVariable("id") Long id) {}
 }
