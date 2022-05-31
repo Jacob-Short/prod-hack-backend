@@ -16,8 +16,8 @@ public class Todo implements Serializable {
   private LocalDate timeStamp;
 
   public Todo() {
-    this.title = "Homework";
-    this.body = "Need to complete Math 136 problem set by friday night.";
+    this.title = "";
+    this.body = "";
     this.isDone = false;
     this.timeStamp = LocalDate.now();
   }

@@ -16,20 +16,23 @@ public class Member implements Serializable{
   private LocalDate memberSince;
 
   public Member() {
-    this.username = "jacob";
-    this.password = "jacob123";
-    this.bio = "I like coding!";
+    this.username = "";
+    this.password = "";
+    this.bio = "";
+    this.memberSince = LocalDate.now();
   }
 
   public Member(String username, String password) {
     this.username = username;
     this.password = password;
+    this.memberSince = LocalDate.now();
   }
 
   public Member(String username, String password, String bio) {
     this.username = username;
     this.password = password;
     this.bio = bio;
+    this.memberSince = LocalDate.now();
   }
 
   @Id
