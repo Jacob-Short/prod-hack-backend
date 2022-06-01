@@ -7,17 +7,9 @@ import java.util.List;
 // RestController marks the class as a controller where every method returns
 // a domain object instead of a view. Combining @Controller & @ResponseBody
 @RestController
-@RequestMapping(
-    value = "/members")
+@RequestMapping(value = "/members")
 public class MemberController {
 
-  // private final MemberService memberService;
-
-  // dependency injection
-  //  @Autowired
-  //  public MemberController(MemberService memberService) {
-  //    this.memberService = memberService;
-  //  }
   @Autowired private MemberRepository memberRepository;
 
   // routes
@@ -31,16 +23,13 @@ public class MemberController {
     return memberRepository.save(member);
   }
 
-  //  @GetMapping(value = "/{id}")
-  //  public Member getMemberById(@PathVariable("id") Long id) {
-  //    return new Member();
-  //  }
+  @PutMapping
+  public Member updateMember(@RequestBody Member member) {
+    return memberRepository.save(member);
+  }
 
-  //  @PutMapping
-  //  public void updateMember(@RequestBody Member member) {
-  //    memberRepository.save(member);
-  //  }
-
-  //  @DeleteMapping(value = "/{id}")
-  //  public void deleteMember(@PathVariable("id") Long id) {}
+  @DeleteMapping(value = "/{id}")
+  public void deleteMember(@PathVariable("id") Long id) {
+    memberRepository.deleteById(id);
+  }
 }

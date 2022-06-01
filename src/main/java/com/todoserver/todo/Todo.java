@@ -1,8 +1,8 @@
 package com.todoserver.todo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.todoserver.member.Member;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.io.Serializable;
 
@@ -10,6 +10,11 @@ import java.io.Serializable;
 public class Todo implements Serializable {
 
   @Id private Long id;
+
+  @ManyToOne
+  @JoinColumn(name = "author_id")
+  private Member author;
+
   private String title;
   private String body;
   private boolean isDone;
@@ -37,6 +42,14 @@ public class Todo implements Serializable {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Member getAuthor() {
+    return this.author;
+  }
+
+  public void setAuthor(Member author) {
+    this.author = author;
   }
 
   public boolean isDone() {
@@ -74,7 +87,9 @@ public class Todo implements Serializable {
   @Override
   public String toString() {
     return "Todo{"
-        + "title='"
+        + "author="
+        + author
+        + ", title='"
         + title
         + '\''
         + ", body='"

@@ -9,16 +9,10 @@ import java.util.List;
 // RestController marks the class as a controller where every method returns
 // a domain object instead of a view. Combining @Controller & @ResponseBody
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/todos")
 public class TodoController {
 
-  // private final MemberService memberService;
-
-  // dependency injection
-  //  @Autowired
-  //  public MemberController(MemberService memberService) {
-  //    this.memberService = memberService;
-  //  }
   @Autowired private TodoRepository todoRepository;
 
   // routes
@@ -38,19 +32,7 @@ public class TodoController {
   }
 
   @DeleteMapping(value = "/{id}")
-  public boolean deleteTodo(@PathVariable("id") Long id) throws Exception {
-    try {
-      todoRepository.deleteById(id);
-      return true;
-    }
-    catch (Exception err) {
-      throw new Exception();
-    }
+  public void deleteTodo(@PathVariable("id") Long id) {
+    todoRepository.deleteById(id);
   }
-
-  //      @GetMapping(value = "/{id}")
-  //      public Todo getTodoById(@PathVariable("id") Long id) {
-  //        return new Todo();
-  //      }
-
 }
