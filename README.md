@@ -10,3 +10,4 @@ JPA: https://www.educba.com/java-repository/
 JPA : https://spring.io/projects/spring-data-jpa
 Understanding JPA & DAO: https://www.baeldung.com/java-dao-pattern, https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa
 psql fk: https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-foreign-key/
+cors: https://spring.io/guides/gs/rest-service-cors/

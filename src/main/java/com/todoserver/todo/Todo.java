@@ -3,39 +3,50 @@ package com.todoserver.todo;
 import com.todoserver.member.Member;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "todos")
 public class Todo implements Serializable {
 
-  @Id private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-  @ManyToOne
-  @JoinColumn(name = "author_id")
-  private Member author;
+//  @ManyToOne
+//  @JoinColumn(name = "author")
+//  private Member author;
 
+  @Column(name = "title", nullable = true)
   private String title;
+
+  @Column(name = "body", nullable = false)
   private String body;
+
+  @Column(name = "done", nullable = false)
   private boolean isDone;
-  private LocalDate timeStamp;
+
+  @Column(name = "time_stamp", nullable = false)
+  private Date timeStamp;
 
   public Todo() {
     this.title = "";
     this.body = "";
     this.isDone = false;
-    this.timeStamp = LocalDate.now();
+    this.timeStamp = Date.valueOf(LocalDate.now());
   }
 
   public Todo(String title, String body) {
     this.title = title;
     this.body = body;
     this.isDone = false;
-    this.timeStamp = LocalDate.now();
+//    this.author = new Member();
+    this.timeStamp = Date.valueOf(LocalDate.now());
   }
 
-  @Id
-  @GeneratedValue
   public Long getId() {
     return this.id;
   }
@@ -44,13 +55,13 @@ public class Todo implements Serializable {
     this.id = id;
   }
 
-  public Member getAuthor() {
-    return this.author;
-  }
-
-  public void setAuthor(Member author) {
-    this.author = author;
-  }
+//  public Member getAuthor() {
+//    return this.author;
+//  }
+//
+//  public void setAuthor(Member author) {
+//    this.author = author;
+//  }
 
   public boolean isDone() {
     return this.isDone;
@@ -76,20 +87,18 @@ public class Todo implements Serializable {
     this.body = body;
   }
 
-  public LocalDate getTimeStamp() {
+  public Date getTimeStamp() {
     return this.timeStamp;
   }
 
-  public void setTimeStamp(LocalDate timeStamp) {
+  public void setTimeStamp(Date timeStamp) {
     this.timeStamp = timeStamp;
   }
 
   @Override
   public String toString() {
     return "Todo{"
-        + "author="
-        + author
-        + ", title='"
+        + "title='"
         + title
         + '\''
         + ", body='"
