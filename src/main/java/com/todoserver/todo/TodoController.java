@@ -2,6 +2,7 @@ package com.todoserver.todo;
 
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -18,7 +19,8 @@ public class TodoController {
   // routes
   @GetMapping
   public List<Todo> getTodos() {
-    return todoRepository.findAll();
+    return todoRepository.findAll(Sort.by("id").descending());
+    //    return todoRepository.findAll();
   }
 
   @PostMapping
