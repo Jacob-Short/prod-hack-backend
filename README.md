@@ -14,9 +14,12 @@ Requirements for the software and other tools to build, test and push
 - [Java 16](https://docs.aws.amazon.com/corretto/latest/corretto-16-ug/downloads-list.html)
 
 ### Run Locally
-1. Modify 'spring.datasource.password' within '/src/main/resources/application.properties' with
-    password sent from admin
-2. Enter the following command from the project root directory:
+1. Modify 'spring.datasource.username' within '/src/main/resources/application.properties' with
+    username sent from admin
+2. Modify 'spring.datasource.password' within '/src/main/resources/application.properties' with
+      password sent from admin
+3. Enter the following command from the project root directory:
+
     ```bash
     ./gradlew bootRun
     ```
