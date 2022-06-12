@@ -19,9 +19,15 @@ public class MemberController {
     return memberRepository.findAll();
   }
 
-  @PostMapping
+  @PostMapping("/add")
   public Member addMember(@RequestBody Member member) {
     return memberRepository.save(member);
+  }
+
+  @PostMapping("/login")
+  public boolean login(@RequestBody Member member) {
+    // authentication
+    return true;
   }
 
   @PutMapping
